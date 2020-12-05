@@ -26,7 +26,7 @@ class Seat:
     def rowfactor(self, factor: int):
         self.__rowfactor = factor
 
-    def binary_assign(self, rows: int=128, cols: int=8):
+    def decode_rowcol(self, rows: int=128, cols: int=8):
         col = 0
         row = 0
         col_stride = int(cols / 2)
@@ -60,7 +60,7 @@ def main():
         seat_ids = []
         for line in infile:
             seat = Seat(line)
-            seat_location = seat.binary_assign()
+            seat_location = seat.decode_rowcol()
             seat_ids.append(seat.get_seatid(*seat_location))
     print ("Highest seat ID: {}".format(max(seat_ids)))
     occupied_seats = set(seat_ids)
