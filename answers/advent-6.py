@@ -1,5 +1,6 @@
 import sys
 from functools import reduce
+from operator import add
 from typing import List
 
 def get_groups(infile: str):
@@ -39,11 +40,12 @@ def main():
         print("Single input filename required, no more, no less.")
         sys.exit(1)
     groups = get_groups(sys.argv[1])
+    print(groups)
     yes_sets1 = get_yesanswer_sets(groups, get_group_set1)
-    answers_sum = reduce(lambda a, b: a + b, [len(st) for st in yes_sets1])
+    answers_sum = reduce(add, [len(st) for st in yes_sets1])
     print("sum of yes answers is {}".format(answers_sum))
     yes_sets2 = get_yesanswer_sets(groups, get_group_set2)
-    answers_sum = reduce(lambda a, b: a + b, [len(st) for st in yes_sets2])
+    answers_sum = reduce(add, [len(st) for st in yes_sets2])
     print("sum of COMMON yes answers is {}".format(answers_sum))
 
 
